@@ -54,7 +54,7 @@ export default defineComponent({
   name: "IndexPage",
   data() {
     return {
-      OPENAI_API_KEY: "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",
+      OPENAI_API_KEY: "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",
       input: "",
       response: "",
       log: [],
