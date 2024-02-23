@@ -10,7 +10,7 @@
 
 
 const { configure } = require('quasar/wrappers');
-
+require('dotenv').config({ override: true })
 
 module.exports = configure(function (/* ctx */) {
   return {
@@ -30,8 +30,8 @@ module.exports = configure(function (/* ctx */) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: [
-      
-      
+
+
     ],
 
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#css
@@ -59,6 +59,7 @@ module.exports = configure(function (/* ctx */) {
         browser: [ 'es2019', 'edge88', 'firefox78', 'chrome87', 'safari13.1' ],
         node: 'node16'
       },
+      env: require('dotenv').config().parsed,
 
       vueRouterMode: 'hash', // available values: 'hash', 'history'
       // vueRouterBase,
@@ -79,7 +80,7 @@ module.exports = configure(function (/* ctx */) {
       // extendViteConf (viteConf) {},
       // viteVuePluginOptions: {},
 
-      
+
       // vitePlugins: [
       //   [ 'package-name', { ..options.. } ]
       // ]

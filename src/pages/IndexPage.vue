@@ -8,9 +8,14 @@
     <div class="chat-messages" v-for="(item, index) in log" :key="index">
       <div class="message">
         <span class="row">
-        <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D " class="rounded-circle foto "> Minha Pergunta:</span> <p class=" margin-sec ">{{ item.input }}</p> </div>
+        <img src="https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D " class="rounded-circle foto ">
+         Minha Pergunta:
+         </span>
+         <p class=" margin-sec ">
+           {{ item.input }}</p> </div>
       <div class="message">
-        <span class="row"> <img src="https://plus.unsplash.com/premium_photo-1677269465314-d5d2247a0b0c?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-circle foto">Assistente:</span>
+        <span class="row">
+          <img src="https://plus.unsplash.com/premium_photo-1677269465314-d5d2247a0b0c?q=80&w=1287&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-circle foto">Assistente:</span>
          <p class="margin-sec"> {{ item.response }}</p> </div>
     </div>
     <div class="chat-input row ">
@@ -48,13 +53,15 @@
 
 <script>
 import { defineComponent } from "vue";
+
 import { OpenAI } from "openai";
 
 export default defineComponent({
   name: "IndexPage",
   data() {
     return {
-      OPENAI_API_KEY: "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",
+      apiKey: process.env.OPENAI_API_KEY,
+      //OPENAI_API_KEY: "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",
       input: "",
       response: "",
       log: [],
@@ -69,7 +76,7 @@ export default defineComponent({
     async completeCall(input) {
       this.messages.push({ role: "user", content: input });
       const openai = new OpenAI({
-        apiKey: this.OPENAI_API_KEY,
+        apiKey: this.apiKey,
         dangerouslyAllowBrowser: true,
       });
 
@@ -178,6 +185,7 @@ export default defineComponent({
   position: relative;
   background: url("https://i.ibb.co/3s1f9Jq/default-wallpaper.png") repeat;
   z-index: 0;
+
 }
 
 .conversation ::-webkit-scrollbar {
